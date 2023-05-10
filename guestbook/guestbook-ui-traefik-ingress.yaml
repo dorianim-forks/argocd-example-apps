@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: guestbook-ui
+  namespace: argocd
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`ext.itsblue.de`)
+      priority: 10
+      services:
+        - name: guestbook-ui
+          port: 80
